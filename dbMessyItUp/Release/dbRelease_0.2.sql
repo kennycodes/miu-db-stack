@@ -44,13 +44,13 @@ CREATE TABLE miu.devices(
 
 CREATE TABLE miu.account_devices(
    account_id INTEGER NOT NULL,
-   device_id INTEGER NOT NULL
+   device_id INTEGER NOT NULL,
   PRIMARY KEY (account_id, device_id),
   CONSTRAINT fkey_account_device_account_id FOREIGN KEY (account_id)
-      REFERENCES miu.accounts (account_id) MATCH SIMPLE
+      REFERENCES miu.accounts (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   CONSTRAINT fkey_account_device_device_id FOREIGN KEY (device_id)
-      REFERENCES miu.devices (device_id) MATCH SIMPLE
+      REFERENCES miu.devices (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
@@ -65,7 +65,7 @@ CREATE TABLE miu.locations(
    ip_address VARCHAR (50),
    recorded_at TIMESTAMP NOT NULL,
    CONSTRAINT fkey_customer_loc_account_id FOREIGN KEY (account_id)
-      REFERENCES miu.customer_account (account_id) MATCH SIMPLE
+      REFERENCES miu.accounts (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
